@@ -1,7 +1,12 @@
+import SignUpForm from "@/src/components/form/SignUpForm";
 import React from "react";
 
 const page = () => {
-  return <div>Sign Up!</div>;
+  return (
+    <div className="w-full">
+      <SignUpForm />
+    </div>
+  );
 };
 
 export default page;

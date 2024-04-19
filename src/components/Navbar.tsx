@@ -1,11 +1,10 @@
 import Link from "next/link";
-import React from "react";
-import { Button, buttonVariants } from "./ui/button";
+import { Button } from "./ui/button";
 import { Headphones } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <div className="bg-[#191f27] py-4 fixed w-full z-10 top-0">
+    <div className="bg-[#191f27] py-2 fixed w-full z-10 top-0">
       <div className="container flex items-center justify-between">
         <Link href="/">
           <Headphones className="text-white" />
