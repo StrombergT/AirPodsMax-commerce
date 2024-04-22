@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/src/components/ui/toaster";
+import Provider from "../components/Provider";
+import { cn } from "../lib/utils";
 import Navbar from "../components/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,11 +20,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className="h-screen flex flex-col justify-center items-center bg-[#0d1117]">
-          <Navbar />
-          {children}
-        </main>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          inter.variable
+        )}
+      >
+        <Provider>
+          <main className="h-screen flex flex-col justify-center items-center ">
+            {children}
+            <Navbar />
+          </main>
+          <Toaster />
+        </Provider>
       </body>
     </html>
   );
