@@ -4,7 +4,6 @@ import "./globals.css";
 import { Toaster } from "@/src/components/ui/toaster";
 import Provider from "../components/Provider";
 import { cn } from "../lib/utils";
-import Navbar from "../components/Navbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -27,10 +26,7 @@ export default function RootLayout({
         )}
       >
         <Provider>
-          <main className="h-screen flex flex-col justify-center items-center ">
-            {children}
-            <Navbar />
-          </main>
+          {children}
           <Toaster />
         </Provider>
       </body>
