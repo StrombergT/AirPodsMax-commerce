@@ -1,29 +1,34 @@
 "use client";
+import { ComponentProps, ReactNode } from "react";
+import { cn } from "../lib/utils";
 import Link from "next/link";
-import { Button } from "./ui/button";
-import { Headphones } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { Button } from "./ui/button";
 import SignOutButton from "./SignOutButton";
 
-const Navbar = () => {
-  const { data: session } = useSession();
-  return (
-    <div className="bg-[#191f27] py-2 fixed w-full z-10 top-0">
-      <div className="container flex items-center justify-between">
-        <Link href="/">
-          <Headphones className="text-white" />
-        </Link>
+interface NavbarProps {
+  children: ReactNode;
+}
 
+export function Navbar({ children }: NavbarProps) {
+  const { data: session } = useSession();
+
+  return (
+    <nav className="bg-primary text-primary-foreground flex justify-between px-4 py-2">
+      {children}
+      <div className="flex items-center">
         {session?.user ? (
           <SignOutButton />
         ) : (
-          <Button variant={"secondary"}>
+          <Button asChild variant={"secondary"}>
             <Link href="/sign-in">Sign in</Link>
           </Button>
         )}
       </div>
-    </div>
+    </nav>
   );
-};
+}
 
-export default Navbar;
+export function NavLink(props: Omit<ComponentProps<typeof Link>, "className">) {
+  return <Link {...props} className={cn("p-4 ")} />;
+}
