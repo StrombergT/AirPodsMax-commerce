@@ -10,7 +10,7 @@ interface NavbarProps {
   children: ReactNode;
 }
 
-export function Navbar({ children }: NavbarProps) {
+export default function Navbar({ children }: NavbarProps) {
   const { data: session } = useSession();
 
   return (

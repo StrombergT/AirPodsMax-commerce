@@ -1,4 +1,4 @@
-import { NavLink, Navbar } from "@/src/components/Navbar";
+import Navbar, { NavLink } from "@/src/components/Navbar";
 import { Headphones } from "lucide-react";
 
 export const dynamic = "force-dynamic";
