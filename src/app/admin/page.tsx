@@ -1,18 +1,5 @@
-import { authOptions } from "@/src/lib/auth";
-import { getServerSession } from "next-auth";
-import React from "react";
-
 const page = async () => {
-  const session = await getServerSession(authOptions);
-
-  if (session?.user) {
-    return (
-      <h2 className="text-2xl">
-        Admin page - Welcome {session?.user.username}
-      </h2>
-    );
-  }
-  return <h2 className="text-2xl ">Please log in to see admin page</h2>;
+  return <h1 className="text-secondary">hej</h1>;
 };
 
 export default page;
