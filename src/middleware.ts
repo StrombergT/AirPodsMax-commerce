@@ -1,21 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
+import { authenticatePassword } from "./lib/authenticatePassword";
 
 export const config = {
   matcher: "/admin/:path*",
 };
 
 export async function middleware(request: NextRequest) {
-  const isAuthenticated = await checkAuthentication(request);
-
-  if (!isAuthenticated) {
-    return new NextResponse("authentication failed", {
+  if ((await isAuthenticated(request)) === false) {
+    return new NextResponse("Unauthorized", {
       status: 401,
       headers: { "WWW-Authenticate": "Basic" },
     });
   }
 }
 
-async function checkAuthentication(request: NextRequest) {
+async function isAuthenticated(request: NextRequest) {
   const authHeader =
     request.headers.get("authorization") ||
     request.headers.get("Authorization");
@@ -26,5 +25,11 @@ async function checkAuthentication(request: NextRequest) {
     .toString()
     .split(":");
 
-  console.log(username, password);
+  return (
+    username === process.env.ADMIN_USERNAME &&
+    (await authenticatePassword(
+      password,
+      process.env.ADMIN_HASHED_PASSWORD as string
+    ))
+  );
 }
