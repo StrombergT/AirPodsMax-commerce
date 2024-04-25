@@ -15,6 +15,16 @@ export async function middleware(request: NextRequest) {
   }
 }
 
-async function checkAuthentication(request: NextRequest): Promise<boolean> {
-  return Promise.resolve(false);
+async function checkAuthentication(request: NextRequest) {
+  const authHeader =
+    request.headers.get("authorization") ||
+    request.headers.get("Authorization");
+
+  if (!authHeader) return false;
+
+  const [username, password] = Buffer.from(authHeader.split(" ")[1], "base64")
+    .toString()
+    .split(":");
+
+  console.log(username, password);
 }
