@@ -6,20 +6,20 @@ import fs from "fs/promises";
 export async function GET(
   reg: NextRequest,
   { params: { id } }: { params: { id: string } }
-) {
+): Promise<void | NextResponse> {
   const product = await db.product.findUnique({
     where: { id },
     select: { image: true, name: true },
   });
 
-  if (product == null) return notFound;
+  if (product == null) return notFound();
   const { size } = await fs.stat(`public/${product.image}`);
   const file = await fs.readFile(`public/${product.image}`);
 
   return new NextResponse(file, {
     headers: {
       "Content-Disposition": `attachment; filename="${product.name} - ${id}.jpg"`,
-      "Content-Type": "image/jpeg",
+      "Content-Type": "image/jpg",
       "Content-Length": String(size),
     },
   });
