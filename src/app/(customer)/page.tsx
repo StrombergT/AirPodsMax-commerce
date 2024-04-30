@@ -1,8 +1,5 @@
 import Hero from "@/src/components/Hero";
 
-import { Button } from "@/src/components/ui/button";
-import Link from "next/link";
-
 export default function HomePage() {
   return (
     <>
@@ -11,16 +8,10 @@ export default function HomePage() {
         <div className="conatiner mx-auto">
           <h2 className="text-center">AirPodsMax Pro</h2>
           <p className="text-center mb-[30px]">
-            AirPods Max – en perfekt mix av kristallklart högupplöst ljud och
-            enkelheten från AirPods. Din ultimata ljudupplevelse.
+            AirPods Max - a perfect blend of crystal-clear high-resolution sound
+            and the simplicity of AirPods. Your ultimate audio experience.
           </p>
-
           <div className="mx-auto justify-center items-center flex"></div>
-          <div>
-            <Button asChild>
-              <Link href="/products">See all products</Link>
-            </Button>
-          </div>
         </div>
       </section>
     </>
