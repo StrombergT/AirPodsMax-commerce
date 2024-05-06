@@ -12,11 +12,8 @@ export default async function Product({
   const product = await db.product.findUnique({ where: { id } });
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen ">
-        <div className="flex flex-col justify-center relative w-full m-auto max-w-[800px] ">
-          <Link href="/products" className="mb-5 font-semibold">
-            Back to Products
-          </Link>
+      <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-24 lg:px-6 shadow-lg mt-14">
+        <div className="flex justify-center items-center mx-auto">
           <Image
             src={product?.image ?? ""}
             width={500}
@@ -25,7 +22,14 @@ export default async function Product({
             quality={100}
             className="w-auto rounded-xl"
           />
-          <div className="flex flex-col items-start gap-4 mt-5">
+
+          <div className="flex flex-col items-start gap-4 mt-5 ml-[2rem]">
+            <Link
+              href="/products"
+              className="mb-5 font-semibold uppercase hover:underline"
+            >
+              Back to Products
+            </Link>
             <h1 className="text-2xl font-bold uppercase ">{product?.name}</h1>
             <span className="font-semibold text-red-500 text-lg">
               {product?.unit_amount} SEK

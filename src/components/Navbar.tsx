@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { Button } from "./ui/button";
 import SignOutButton from "./SignOutButton";
-import { Headphones, Search } from "lucide-react";
+import { Grip, Headphones, Search, ShoppingCart } from "lucide-react";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -26,6 +26,9 @@ export default function Navbar() {
             <li className="underline-offset-4 hover:text-white hover:underline">
               <Link href="/products">HeadPhones</Link>
             </li>
+            <li className="underline-offset-4 hover:text-white hover:underline">
+              <Link href="/about">About Us</Link>
+            </li>
           </ul>
         </div>
         <div className="hidden justify-center md:flex md:w-1/3 relative">
@@ -42,10 +45,18 @@ export default function Navbar() {
           </form>
         </div>
       </div>
+      <div className="flex items-center mx-auto text-primary-foreground">
+        <ShoppingCart></ShoppingCart>
+      </div>
 
-      <div className="flex items-center">
+      <div className="flex items-center ml-5">
         {session?.user ? (
-          <SignOutButton />
+          <>
+            <Link href="/profile">
+              <Grip className="text-primary-foreground mr-4 hover:underline"></Grip>
+            </Link>
+            <SignOutButton />
+          </>
         ) : (
           <Button asChild variant={"secondary"}>
             <Link href="/sign-in">Sign in</Link>
