@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ProductCardProps } from "../types/ProductCardType";
-import { Skeleton } from "./ui/skeleton";
 
 export function ProductCard({
   id,
