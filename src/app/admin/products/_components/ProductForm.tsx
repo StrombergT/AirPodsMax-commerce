@@ -7,9 +7,10 @@ import { Textarea } from "@/src/components/ui/textarea";
 import { Label } from "@/src/components/ui/label";
 import { useFormStatus } from "react-dom";
 import { PutBlobResult } from "@vercel/blob";
-import { AddProduct } from "../../_actions/products";
+import { AddProduct, updateProduct } from "../../_actions/products";
+import { Product } from "@prisma/client";
 
-export default function ProductForm() {
+export default function ProductForm({ product }: { product?: Product | null }) {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
   const [formdata, setFormdata] = useState<{
@@ -44,7 +45,11 @@ export default function ProductForm() {
       unit_amount: parseInt(formdata.price),
       image: newBlob.url,
     };
-    await AddProduct({}, data);
+    if (product) {
+      await updateProduct(product.id, data);
+    } else {
+      await AddProduct({}, data);
+    }
   }
 
   return (

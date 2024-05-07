@@ -10,7 +10,19 @@ export async function AddProduct(prevState: unknown, formData: any) {
   redirect("/admin/products");
 }
 
-export async function updateProduct() {}
+export async function updateProduct(id: string, formData: any) {
+  const product = await db.product.findUnique({
+    where: { id },
+  });
+
+  if (product == null) return notFound();
+
+  await db.product.update({
+    where: { id },
+    data: formData,
+  });
+  redirect("/admin/products");
+}
 
 export async function RemoveProduct(id: string) {
   const product = await db.product.delete({ where: { id } });
