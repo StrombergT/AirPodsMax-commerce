@@ -1,64 +1,42 @@
 "use client";
-
 import Link from "next/link";
-import { useSession } from "next-auth/react";
-import { Button } from "./ui/button";
+import CartIcon from "./CartIcon";
+import Menu from "./Menu";
+import { Headphones } from "lucide-react";
 import SignOutButton from "./SignOutButton";
-import { Grip, Headphones, Search, ShoppingCart } from "lucide-react";
+import { Button } from "./ui/button";
+import { useSession } from "next-auth/react";
 
 export default function Navbar() {
   const { data: session } = useSession();
-
   return (
-    <nav className="bg-[#171717] relative flex justify-between px-4 py-4 lg:px-6">
-      <div className="flex w-full items-center">
-        <div className="flex w-full md:w-1/3">
-          <Link href="/">
-            <div className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6 text-primary-foreground">
-              <Headphones className="mr-2 flex-none text-sm font-medium uppercase md:hidden lg:block" />{" "}
-              AirPodsMax
-            </div>
+    <nav className="bg-[#171717] text-primary-foreground py-2 px-4 lg:py-4 lg:px-20 xl:px-40 flex items-center justify-between border-b-2 border-b-black uppercase">
+      <div className="flex items-center">
+        <div className="text-xl font-bold mr-8 flex items-center">
+          <Headphones className="mr-2" />
+          <Link href="/">AirPodsMax</Link>
+        </div>
+        <div className="hidden lg:flex gap-4">
+          <Link className="underline" href="/">
+            Homepage
           </Link>
-          <ul className="hidden gap-6 text-sm md:flex md:items-center text-primary-foreground">
-            <li className="underline-offset-4 hover:text-white hover:underline">
-              <Link href="/">Home</Link>
-            </li>
-            <li className="underline-offset-4 hover:text-white hover:underline">
-              <Link href="/products">HeadPhones</Link>
-            </li>
-            <li className="underline-offset-4 hover:text-white hover:underline">
-              <Link href="/about">About Us</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="hidden justify-center md:flex md:w-1/3 relative">
-          <form className="w-max-[550px] w-full lg:w-80 xl:w-full">
-            <input
-              className="w-full rounded-lg border border-[#2b2a2a] bg-[#171717] px-4 py-2 text-sm text-primary-foreground outline-none"
-              type="text"
-              placeholder="Search for products..."
-              name="search"
-            />
-            <div className="absolute right-0 top-0 mr-3 flex h-full items-center ">
-              <Search className="h-4 text-primary-foreground" />
-            </div>
-          </form>
+          <Link href="/products">Products</Link>
+          <Link href="/contact">Contact</Link>
         </div>
       </div>
-      <div className="flex items-center mx-auto text-primary-foreground">
-        <ShoppingCart></ShoppingCart>
+      <div className="md:hidden">
+        <Menu />
       </div>
-
-      <div className="flex items-center ml-5">
+      <div className="flex items-center">
         {session?.user ? (
-          <>
-            <Link href="/profile">
-              <Grip className="text-primary-foreground mr-4 hover:underline"></Grip>
-            </Link>
+          <div className="flex items-center gap-4">
+            <CartIcon />
+
+            <Link href="/orders">Orders</Link>
             <SignOutButton />
-          </>
+          </div>
         ) : (
-          <Button asChild variant={"secondary"}>
+          <Button asChild variant="secondary">
             <Link href="/sign-in">Sign in</Link>
           </Button>
         )}

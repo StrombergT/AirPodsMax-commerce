@@ -1,41 +1,46 @@
+import Image from "next/image";
 import Container from "@/src/components/Container";
-import { ProductCard } from "@/src/components/ProductCard";
-import ProductHero from "@/src/components/ProductHero";
-import { db } from "@/src/lib/db";
-import { Product } from "@prisma/client";
+import { ProductType } from "@/src/types/ProductType";
 import Link from "next/link";
 
-async function getPopularProducts(): Promise<Product[]> {
-  const products = await db.product.findMany({
-    orderBy: { orders: { _count: "desc" } },
+const getData = async () => {
+  const res = await fetch("http://localhost:3000/api/products", {
+    cache: "no-store",
   });
-  return products;
-}
-
-type ProductGridProps = {
-  productsFetch: () => Promise<Product[]>;
-  title: string;
-  subtitle: string;
+  if (!res.ok) {
+    throw new Error("Failed");
+  }
+  return res.json();
 };
 
-async function ProductsGrid({
-  productsFetch,
-  title,
-  subtitle,
-}: ProductGridProps) {
+export default async function ProductPage() {
+  const products: ProductType[] = await getData();
   return (
     <>
       <div className="max-w-screen-2xl px-4 py-8 mx-auto lg:py-24 lg:px-6">
-        <div className="max-w-screen-md mx-auto mb-8 text-center lg:mb-12">
-          <h2 className="container mx-auto mb-4 text-3xl font-extrabold ">
-            {title}
-          </h2>
-          <p className="text-xs">{subtitle}</p>
-        </div>
         <Container>
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3 relative pb-32">
-            {(await productsFetch()).map((product) => (
-              <ProductCard key={product.id} {...product} />
+            {products.map((product) => (
+              <Link key={product.id} href={`/products/${product.id}`}>
+                <div className="max-w-[500px] bg-[#f8f8f8] relative overflow-hidden rounded-lg flex flex-col items-center justify-center hover:opacity-80 ease duration-150">
+                  {product.image && (
+                    <div className="aspect-w-1 aspect-h-1">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={200}
+                        height={200}
+                        objectFit="cover"
+                        objectPosition="center"
+                        quality={100}
+                        className="rounded-lg"
+                      />
+                    </div>
+                  )}
+                  <h2 className="text-xl font-semibold mb-1">{product.name}</h2>
+                  <h3>{product.unit_amount} SEK</h3>
+                </div>
+              </Link>
             ))}
           </div>
         </Container>
@@ -81,18 +86,5 @@ async function ProductsGrid({
         </div>
       </section>
     </>
-  );
-}
-
-export default function ProductPage() {
-  return (
-    <main className=" uppercase">
-      <ProductHero />
-      <ProductsGrid
-        title="Headphones"
-        subtitle="Free standard delivery for orders of 539 SEK or more | Free returns | 90-day trial period with no commitment | 2-year warranty | Free support"
-        productsFetch={getPopularProducts}
-      />
-    </main>
   );
 }
