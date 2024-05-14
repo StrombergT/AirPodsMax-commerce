@@ -1,11 +1,38 @@
 "use client";
-import React from "react";
+
 import { useCartStore } from "@/src/lib/store";
 import Image from "next/image";
 import { Minus, Plus } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function CartPage() {
+  const { data: session } = useSession();
+  const router = useRouter();
   const cartStore = useCartStore();
+
+  const handleCheckout = async () => {
+    if (!session) {
+      router.push("/sign-in");
+    } else {
+      try {
+        const res = await fetch("http://localhost:3000/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            price: totalPrice,
+            cartStore,
+            status: "Not Paid",
+            userEmail: session.user.email,
+          }),
+        });
+        //const data = await res.json();
+        //router.push(`/(router will push to pay section)/${data}`);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   const totalPrice = cartStore.cart.reduce((acc, item) => {
     return acc + item.quantity! * item.unit_amount!;
@@ -68,7 +95,10 @@ export default function CartPage() {
             <span className="font-bold text-xl">{totalPrice} SEK</span>
           </div>
         </div>
-        <button className="bg-[#171717] text-white p-3 rounded-md w-full mt-4">
+        <button
+          className="bg-[#171717] text-white p-3 rounded-md w-full mt-4"
+          onClick={handleCheckout}
+        >
           CHECKOUT
         </button>
       </div>
