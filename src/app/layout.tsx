@@ -5,7 +5,6 @@ import { Toaster } from "@/src/components/ui/toaster";
 import { cn } from "../lib/utils";
 import Provider from "../components/Provider";
 import Notification from "../components/Notification";
-import QueryProvider from "../components/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -28,10 +27,8 @@ export default function RootLayout({
         )}
       >
         <Provider>
-          <QueryProvider>
-            {children}
-            <Toaster />
-          </QueryProvider>
+          {children}
+          <Toaster />
         </Provider>
         <Notification />
       </body>
