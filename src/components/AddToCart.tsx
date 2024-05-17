@@ -1,18 +1,15 @@
 "use client";
 import { toast } from "react-toastify";
-import { ProductType } from "../types/ProductType";
 import { useCartStore } from "../lib/store";
+import { Product } from "@prisma/client";
 
-export default function AddToCart({ product }: { product: ProductType }) {
+export default function AddToCart({ product }: { product: Product }) {
   const { addProduct } = useCartStore();
 
   const handleCart = () => {
     addProduct({
-      id: product.id,
-      name: product.name,
-      image: product.image || "",
-      unit_amount: product.unit_amount,
-      quantity: product.quantity,
+      ...product,
+      quantity: 1,
     });
     toast.success(`Added ${product.name} to cart`);
   };

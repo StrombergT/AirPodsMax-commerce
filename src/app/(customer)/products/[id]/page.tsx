@@ -1,18 +1,21 @@
 import AddToCart from "@/src/components/AddToCart";
 import { ProductType } from "@/src/types/ProductType";
+import { OrderItem, Product } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
 const getData = async (id: string) => {
   const res = await fetch(`http://localhost:3000/api/products/${id}`, {
-    cache: "no-store",
+    cache: "no-cache",
   });
 
   if (!res.ok) {
     throw new Error("Failed!");
   }
 
-  return res.json();
+  const data: Product = await res.json();
+  console.log(data);
+  return data;
 };
 
 export default async function SingleProductPage({
@@ -20,7 +23,7 @@ export default async function SingleProductPage({
 }: {
   params: { id: string };
 }) {
-  const singleProduct: ProductType = await getData(params.id);
+  const singleProduct = await getData(params.id);
 
   return (
     <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-24 lg:px-6 shadow-lg mt-14">

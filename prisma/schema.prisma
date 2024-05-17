@@ -37,8 +37,7 @@ model Product {
     description String?
     unit_amount Float
     image       String?
-    quantity    Float   @default(0)
-    orders      Order[]
+    quantity    Int   @default(0)
 }
 
 model Order {
@@ -50,7 +49,18 @@ model Order {
     status          String
     createdDate     DateTime  @default(now())
     paymentIntentID String?   @unique
-    products        Product[]
+    products        OrderItem[]
+}
+
+model OrderItem {
+    id          String  @id @default(cuid())
+    name        String
+    description String?
+    unit_amount Float
+    image       String?
+    quantity    Int   @default(0)
+    orderId     String 
+    order       Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }
 
 model Account {

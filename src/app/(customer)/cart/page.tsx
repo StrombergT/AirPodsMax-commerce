@@ -3,13 +3,44 @@
 import { useCartStore } from "@/src/lib/store";
 import Image from "next/image";
 import { Minus, Plus } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function CartPage() {
   const cartStore = useCartStore();
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const totalPrice = cartStore.cart.reduce((acc, item) => {
     return acc + item.quantity! * item.unit_amount!;
   }, 0);
+
+  const handleCheckout = async () => {
+    if (!session) {
+      router.push("/sign-in");
+    } else {
+      try {
+        console.log(cartStore.cart);
+        const res = await fetch("http://localhost:3000/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            products: cartStore.cart,
+            amount: totalPrice,
+            status: "not payed",
+            currency: "",
+            paymentIntentID: null,
+            userId: session.user.id,
+          }),
+        });
+        const data = await res.json();
+        console.log(data);
+        router.push(`/pay/${data.id}`);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   return (
     <div className="h-screen flex flex-col lg:flex-row">
@@ -22,7 +53,7 @@ export default function CartPage() {
             >
               <div className="flex items-center">
                 <Image
-                  src={item.image}
+                  src={item.image || ""}
                   alt={item.name}
                   width={100}
                   height={100}
@@ -68,7 +99,10 @@ export default function CartPage() {
             <span className="font-bold text-xl">{totalPrice} SEK</span>
           </div>
         </div>
-        <button className="bg-[#171717] text-white p-3 rounded-md w-full mt-4">
+        <button
+          className="bg-[#171717] text-white p-3 rounded-md w-full mt-4"
+          onClick={handleCheckout}
+        >
           CHECKOUT
         </button>
       </div>

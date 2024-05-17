@@ -1,12 +1,13 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { AddCartType } from "../types/AddCartType";
+//import { AddCartType } from "../types/AddCartType";
+import { Product } from "@prisma/client";
 
 type CartState = {
-  cart: AddCartType[];
+  cart: Product[];
   clearCart: () => void;
-  addProduct: (item: AddCartType) => void;
-  removeProduct: (item: AddCartType) => void;
+  addProduct: (item: Product) => void;
+  removeProduct: (item: Product) => void;
 };
 
 export const useCartStore = create<CartState>()(

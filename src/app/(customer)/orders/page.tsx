@@ -2,8 +2,18 @@ import Container from "@/src/components/Container";
 import Image from "next/image";
 import React from "react";
 import { fetchOrders } from "../../api/orders/route";
+import { useSession } from "next-auth/react";
 
 export default async function OrderPage() {
+  //const { data: session } = useSession();
+  // const session = await // get session
+  // const r = await fetch(
+  //  `http://localhost:3000/api/user?email=${session?.user.email}`
+  //);
+  //const user = await r.json();
+
+  // const res = await fetch(`http://localhost:3000/api/orders?userId=${user.id}`);
+  // const orders = await res.json();
   const orders = await fetchOrders();
 
   if (orders === null) {
@@ -57,22 +67,22 @@ export default async function OrderPage() {
                 </span>
               </div>
               <div className="grid grid-cols-1 gap-5 text-sm">
-                {order.products.map((product) => (
-                  <div key={product.id} className="flex items-center gap 5">
+                {order.products.map((item) => (
+                  <div key={item.id} className="flex items-center gap 5">
                     <span className="font-semibold pr-1">Product:</span>
-                    <span className="flex-1">{product.name}</span>
+                    <span className="flex-1">{item.name}</span>
 
                     <span className="font-semibold pr-1">Price:</span>
-                    <span className="flex-1">{product.unit_amount} SEK</span>
+                    <span className="flex-1">{item.unit_amount} SEK</span>
 
                     <span className="font-semibold pr-1">Quantity:</span>
-                    <span className="flex-1">{product.quantity}</span>
+                    <span className="flex-1">{item.quantity}</span>
                     <div className="w-[60px]">
                       <Image
-                        src={product.image || ""}
+                        src={item.image || ""}
                         width={60}
                         height={60}
-                        alt={product.name}
+                        alt={item.name}
                         priority={true}
                         className="w-full object-fill"
                       />

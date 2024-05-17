@@ -2,6 +2,7 @@ import Image from "next/image";
 import Container from "@/src/components/Container";
 import { ProductType } from "@/src/types/ProductType";
 import Link from "next/link";
+import { Product } from "@prisma/client";
 
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/products", {
@@ -14,7 +15,7 @@ const getData = async () => {
 };
 
 export default async function ProductPage() {
-  const products: ProductType[] = await getData();
+  const products: Product[] = await getData();
   return (
     <>
       <div className="max-w-screen-2xl px-4 py-8 mx-auto lg:py-24 lg:px-6">
@@ -22,7 +23,7 @@ export default async function ProductPage() {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3 relative pb-32">
             {products.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`}>
-                <div className="max-w-[500px] bg-[#f8f8f8] relative overflow-hidden rounded-lg flex flex-col items-center justify-center hover:opacity-80 ease duration-150">
+                <div className="max-w-[500px] relative overflow-hidden rounded-lg flex flex-col items-center justify-center hover:opacity-80 ease duration-150">
                   {product.image && (
                     <div className="aspect-w-1 aspect-h-1">
                       <Image

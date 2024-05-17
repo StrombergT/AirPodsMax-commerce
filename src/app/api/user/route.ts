@@ -58,3 +58,20 @@ export async function POST(req: Request) {
     );
   }
 }
+/*
+export const GET = async (req: Request) => {
+  const url = new URL(req.url);
+  const searchParams = new URLSearchParams(url.searchParams);
+  const email = searchParams.get("email");
+
+  let queryData: any = {};
+  if (email) {
+    queryData.userId = email;
+  }
+
+  const user = await db.user.findMany({
+    where: queryData,
+  });
+
+  return NextResponse.json(user);
+};*/
