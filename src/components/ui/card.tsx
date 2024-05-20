@@ -2,6 +2,19 @@ import * as React from "react";
 
 import { cn } from "@/src/lib/utils";
 
+/**
+ * Try to avoid defining multiple components in a single file. I would prefer something like..
+ *
+ * card/
+ * - Card.tsx
+ * - CardHeader.tsx
+ * - CardTitle.tsx
+ * - CardDescription.tsx
+ *   etc..
+ *
+ * Also I would try to compose a Card from these card components in Card.tsx, and use that as a common interface for whenever you want to use a card. Do you really need to export all of these components? I think its a bit hard to understand how they would be used.
+ */
+
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>

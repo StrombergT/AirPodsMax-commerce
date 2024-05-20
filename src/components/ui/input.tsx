@@ -3,7 +3,7 @@ import * as React from "react";
 import { cn } from "@/src/lib/utils";
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends React.InputHTMLAttributes<HTMLInputElement> { }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
@@ -20,6 +20,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+/**
+ * Why do you set displayName for a lot of these components? I don't have an opinion why you shouldn't but I don't see it commonly used. I think this component should already have the displayName of Input?
+ */
 Input.displayName = "Input";
 
 export { Input };
