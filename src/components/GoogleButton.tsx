@@ -2,12 +2,30 @@ import { ReactNode, useState } from "react";
 import { Button } from "./ui/button";
 import { signIn } from "next-auth/react";
 
+/**
+ * Properties for the GoogleButton component.
+ */
 type GoogleButtonProps = {
+  /**Content of the button */
   children: ReactNode;
 };
 
+/**
+ * button used for login with Google
+ * @param props the properties for google button
+ * @returns Google button component
+ */
+
 export default function GoogleButton({ children }: GoogleButtonProps) {
+  /**
+   * usestate for loading wether the button is loading or not
+   */
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  /**
+   * Function that performs Login
+   * @returns a promise that shows that login is completed
+   */
 
   const loginGoogle = async () => {
     try {
