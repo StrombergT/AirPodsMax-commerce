@@ -47,8 +47,6 @@ export const POST = async (req: NextRequest) => {
       const { products, amount, status, currency, paymentIntentID } =
         await req.json();
 
-      console.log(products);
-
       if (!session.user.email)
         return NextResponse.json({ message: "User has no email" });
       const user = await db.user.findUnique({
@@ -81,9 +79,9 @@ export const POST = async (req: NextRequest) => {
             unit_amount: product.unit_amount,
             image: product.image,
             quantity: product.quantity,
+            productId: product.id,
           },
         });
-        console.log(ot);
       };
 
       for (const product of products) {
