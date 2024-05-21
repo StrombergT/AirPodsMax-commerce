@@ -1,7 +1,7 @@
+import { Product } from "@prisma/client";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 //import { AddCartType } from "../types/AddCartType";
-import { Product } from "@prisma/client";
 
 type CartState = {
   cart: Product[];

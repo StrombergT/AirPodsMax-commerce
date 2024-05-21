@@ -27,10 +27,12 @@ export default function RootLayout({
         )}
       >
         <Provider>
-          {children}
-          <Toaster />
+          <div>
+            {children}
+            <Toaster />
+            <Notification />
+          </div>
         </Provider>
-        <Notification />
       </body>
     </html>
   );

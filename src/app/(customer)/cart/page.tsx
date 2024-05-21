@@ -20,17 +20,15 @@ export default function CartPage() {
       router.push("/sign-in");
     } else {
       try {
-        console.log(cartStore.cart);
         const res = await fetch("http://localhost:3000/api/orders", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             products: cartStore.cart,
             amount: totalPrice,
-            status: "not payed",
+            status: "not paid",
             currency: "",
-            paymentIntentID: null,
-            userId: session.user.id,
+            email: session.user.email,
           }),
         });
         const data = await res.json();
