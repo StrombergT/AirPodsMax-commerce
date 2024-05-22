@@ -41,7 +41,7 @@ export default function CartPage() {
   };
 
   return (
-    <div className="h-screen flex flex-col lg:flex-row">
+    <div className="h-screen flex flex-col lg:flex-row mt-16 bg-white">
       <div className="h-1/2 p-4 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 lg:px-20 xl:px-40">
         {cartStore.cart.length > 0 ? (
           cartStore.cart.map((item) => (
@@ -72,7 +72,7 @@ export default function CartPage() {
             </div>
           ))
         ) : (
-          <p className="flex items-center justify-center text-2xl font-bold">
+          <p className="flex items-center justify-center text-2xl font-bold text-gray-600">
             Your cart is empty
           </p>
         )}

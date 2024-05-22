@@ -1,6 +1,7 @@
 "use client";
 
 import CheckoutForm from "@/src/components/Checkout";
+import Container from "@/src/components/Container";
 import { Elements } from "@stripe/react-stripe-js";
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
@@ -38,12 +39,14 @@ export default function PayPage({ params }: { params: { id: string } }) {
     },
   };
   return (
-    <div>
-      {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
-      )}
+    <div className="mt-16 shadow-md bg-slate-200">
+      <Container>
+        {clientSecret && (
+          <Elements options={options} stripe={stripePromise}>
+            <CheckoutForm />
+          </Elements>
+        )}
+      </Container>
     </div>
   );
 }

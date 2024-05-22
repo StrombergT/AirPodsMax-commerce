@@ -34,7 +34,7 @@ export default async function OrderPage() {
 
   if (orders.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen m-auto gap-5 w-[500px]">
+      <div className="flex flex-col items-center justify-center h-screen m-auto gap-5 w-[500px] text-gray-200">
         <Image
           alt="done"
           height={150}
@@ -42,7 +42,7 @@ export default async function OrderPage() {
           src={"/box.png"}
           priority={true}
         />
-        <h1 className="my-5 flex justify-between text-2xl">
+        <h1 className="my-5 flex justify-between text-2xl ">
           No orders placed.
         </h1>
       </div>
@@ -51,8 +51,8 @@ export default async function OrderPage() {
 
   return (
     <Container>
-      <div className="flex justify-center items-center m-auto py-5 h-full p-2">
-        <div className="flex flex-col justify-center h-full m-auto gap-3 w-[1000px]">
+      <div className="flex justify-center items-center m-auto py-5 h-full p-2 mt-16">
+        <div className="flex flex-col justify-center h-full m-auto gap-3 w-[1000px] mt-16">
           {orders.map((order) => (
             <div key={order.id} className="rounded-sm p-8 my-4  bg-[#fafafa]">
               <div className="flex justify-between mb-5 border-b border-[#d9d9d9]">
