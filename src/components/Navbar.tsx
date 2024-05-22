@@ -1,46 +1,62 @@
 "use client";
+import { Headphones, LogIn } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import CartIcon from "./CartIcon";
-import Menu from "./Menu";
-import { Headphones } from "lucide-react";
 import SignOutButton from "./SignOutButton";
-import { Button } from "./ui/button";
-import { useSession } from "next-auth/react";
+import Menu from "./Menu";
 
 export default function Navbar() {
   const { data: session } = useSession();
-  return (
-    <nav className="bg-[#171717] text-primary-foreground py-2 px-4 lg:py-4 lg:px-20 xl:px-40 flex items-center justify-between border-b-2 border-b-black uppercase">
-      <div className="flex items-center">
-        <div className="text-xl font-bold mr-8 flex items-center">
-          <Headphones className="mr-2" />
-          <Link href="/">AirPodsMax</Link>
-        </div>
-        <div className="hidden lg:flex gap-4">
-          <Link className="underline" href="/">
-            Homepage
-          </Link>
-          <Link href="/products">Products</Link>
-          <Link href="/contact">Contact</Link>
-        </div>
-      </div>
-      <div className="md:hidden">
-        <Menu />
-      </div>
-      <div className="flex items-center">
-        {session?.user ? (
-          <div className="flex items-center gap-4">
-            <CartIcon />
 
-            <Link href="/orders">Orders</Link>
-            <SignOutButton />
+  return (
+    <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#1f1f1f]/50 bg-[#03001417] backdrop-blur-md z-50 px-10">
+      <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
+        <div className="h-auto w-auto flex flex-row items-center">
+          <Headphones className="mr-2 text-gray-600" />
+          <Link
+            href="/"
+            className="font-bold ml-[10px] hidden md:block text-gray-600"
+          >
+            AirPodsMax
+          </Link>
+        </div>
+
+        <div className="w-[400px] h-full flex flex-row items-center justify-between md:mr-20 ">
+          <div className=" justify-between w-full h-auto border border-[#9fa7b661] bg-[#0000005e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-600 text-sm hidden sm:flex items-center gap-4">
+            <Link className="cursor-pointer" href="/">
+              Home
+            </Link>
+            <Link href="/products" className="cursor-pointer">
+              Products
+            </Link>
+            <Link href="/contact" className="cursor-pointer">
+              Contact
+            </Link>
           </div>
-        ) : (
-          <Button asChild variant="secondary">
-            <Link href="/sign-in">Sign in</Link>
-          </Button>
-        )}
+        </div>
+
+        <div className="flex flex-row gap-5 text-gray-600">
+          <div className="sm:hidden">
+            <Menu />
+          </div>
+          <div className="hidden sm:flex items-center gap-4">
+            <CartIcon />
+            {session?.user ? (
+              <div className="flex items-center gap-4">
+                <Link href="/orders">Orders</Link>
+                <SignOutButton />
+              </div>
+            ) : (
+              <div>
+                <Link href="/sign-in">
+                  <LogIn />
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-    </nav>
+    </div>
   );
 }

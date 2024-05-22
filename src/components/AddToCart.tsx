@@ -19,7 +19,7 @@ export default function AddToCart({ product }: { product: Product }) {
       <div className="flex justify-between items-center">
         <div className="flex justify-between w-full p-3 ">
           <button
-            className="text-white text-md p-3 w-80 bg-black mt-4 font-semibold hover:bg-buttonHover ease duration-150 uppercase "
+            className="text-white text-md p-3 w-96 bg-black mt-4 font-semibold hover:bg-buttonHover ease duration-150 uppercase "
             onClick={handleCart}
           >
             Add to Cart

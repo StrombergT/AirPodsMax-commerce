@@ -1,13 +1,17 @@
-import ExtraNews from "@/src/components/ExtraNews";
-import Featured from "@/src/components/Featured";
-import Slider from "@/src/components/Slider";
+import Animation from "@/src/components/Animation";
+import AnimationText from "@/src/components/AnimationText";
+import Hero from "@/src/components/Hero";
+import VideoComponent from "@/src/components/VideoComponent";
 
 export default function HomePage() {
   return (
-    <main>
-      <Slider />
-      <Featured />
-      <ExtraNews />
+    <main className="h-full w-full  ">
+      <div className="flex flex-col gap-20">
+        <Hero />
+        <Animation />
+        <AnimationText />
+        <VideoComponent />
+      </div>
     </main>
   );
 }
