@@ -18,7 +18,7 @@ export default async function ProductPage() {
   const products: Product[] = await getData();
   return (
     <>
-      <div className="max-w-screen-2xl px-4 py-8 mx-auto lg:py-24 lg:px-6">
+      <div className="max-w-screen-2xl px-4 py-8 mx-auto lg:py-24 lg:px-6  mt-16">
         <Container>
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3 relative pb-32">
             {products.map((product) => (
