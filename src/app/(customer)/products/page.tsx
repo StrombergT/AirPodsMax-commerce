@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Container from "@/src/components/Container";
 import { ProductType } from "@/src/types/ProductType";
 import Link from "next/link";
 import { Product } from "@prisma/client";
+import { useEffect, useState } from "react";
 
 const getData = async () => {
   const res = await fetch(
@@ -17,8 +20,13 @@ const getData = async () => {
   return res.json();
 };
 
-export default async function ProductPage() {
-  const products: Product[] = await getData();
+export default function ProductPage() {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    getData().then(setProducts);
+  }, []);
+  // const products: Product[] = await getData();
   return (
     <>
       <div className="max-w-screen-2xl px-4 py-8 mx-auto lg:py-24 lg:px-6  mt-16">
