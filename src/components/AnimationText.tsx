@@ -16,7 +16,8 @@ export default function AnimationText() {
         animate={inViewTop ? "visible" : "hidden"}
         className="text-lg md:text-xl lg:text-2xl xl:text-3xl max-w-[90%] lg:max-w-[1200px] p-5 border-l-2 border-r-2 border-gray-500 Welcome-text"
       >
-        "Experience Sound Like Never Before with AirPods and AirPods Max"
+        &quot;Experience Sound Like Never Before with AirPods and AirPods
+        Max&quot;
       </motion.blockquote>
     </div>
   );
