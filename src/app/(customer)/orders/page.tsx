@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 //import { fetchOrders } from "../../api/orders/route";
 import { useSession } from "next-auth/react";
 import { Order } from "@prisma/client";
-import { ExtendedOrder } from "@/src/types/CreateOrderType";
+import { ExtendedOrder } from "@/src/types/ExtendedOrder";
 
 export default function OrderPage() {
   const [orders, setOrders] = useState<ExtendedOrder[]>([]);
