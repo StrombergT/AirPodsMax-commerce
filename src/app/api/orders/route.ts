@@ -3,11 +3,11 @@ import { db } from "@/src/lib/db";
 import { Product } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
-export const fetchOrders = async () => {
+export const GET = async () => {
   const user = await getAuthSession();
 
   if (!user) {
-    return null;
+    return NextResponse.json({ message: "user not found" });
   }
 
   const orders = await db.order.findMany({
@@ -19,7 +19,7 @@ export const fetchOrders = async () => {
       createdDate: "desc",
     },
   });
-  return orders;
+  return NextResponse.json(orders);
 };
 /*
 export const GET = async (req: Request) => {
