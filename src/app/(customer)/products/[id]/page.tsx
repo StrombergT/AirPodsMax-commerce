@@ -69,9 +69,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const getData = async (id: string) => {
-  const res = await fetch(`http://localhost:3000/api/products/${id}`, {
-    cache: "no-cache",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products/${id}`,
+    {
+      cache: "no-cache",
+    }
+  );
 
   if (!res.ok) {
     throw new Error("Failed!");

@@ -1,3 +1,4 @@
+"use client";
 import Animation from "@/src/components/Animation";
 import AnimationText from "@/src/components/AnimationText";
 import Hero from "@/src/components/Hero";
