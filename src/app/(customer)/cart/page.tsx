@@ -41,20 +41,20 @@ export default function CartPage() {
   };
 
   return (
-    <div className="h-screen flex flex-col lg:flex-row mt-16 bg-white">
+    <div className="h-screen flex flex-col lg:flex-row mt-16 bg-[#0a0e13] text-gray-300">
       <div className="h-1/2 p-4 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 lg:px-20 xl:px-40">
         {cartStore.cart.length > 0 ? (
           cartStore.cart.map((item) => (
             <div
               key={item.id}
-              className="border rounded-lg p-2 mb-4 flex items-center justify-between"
+              className="border border-[#27303f] rounded-lg p-2 mb-4 flex items-center justify-between"
             >
               <div className="flex items-center">
                 <Image
                   src={item.image || ""}
                   alt={item.name}
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
                 />
                 <span className="ml-4">{item.name}</span>
               </div>
@@ -77,7 +77,7 @@ export default function CartPage() {
           </p>
         )}
       </div>
-      <div className="h-1/2 p-4 bg-gray-200 flex flex-col gap-4 justify-center lg:h-full lg:w-1/3 lg:px-20 xl:px-40">
+      <div className="h-1/2 p-4 bg-[#010409] flex flex-col gap-4 justify-center lg:h-full lg:w-1/3 lg:px-20 xl:px-40">
         <div className="flex flex-col gap-1">
           <div className="flex justify-between">
             <span className="text-lg">Subtotal items</span>

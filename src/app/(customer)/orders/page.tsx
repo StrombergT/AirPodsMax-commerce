@@ -25,7 +25,7 @@ export default function OrderPage() {
 
   useEffect(() => {
     const fetchOrders = () => {
-      fetch(`http://localhost:3000/api/orders`, {
+      fetch(process.env.NEXT_PUBLIC_API_BASE_URL + "/api/orders", {
         method: "GET",
       })
         .then((res) => {
@@ -79,12 +79,12 @@ export default function OrderPage() {
 
   return (
     <Container>
-      <div className="flex justify-center items-center m-auto py-5 h-full p-2 mt-16">
+      <div className="flex justify-center items-center m-auto py-5 h-full p-2 mt-16 text-gray-300">
         <div className="flex flex-col justify-center h-full m-auto gap-3 w-[1000px] mt-16">
-          {orders &&
+          {orders !== null &&
             orders.map((order) => (
-              <div key={order.id} className="rounded-sm p-8 my-4  bg-[#fafafa]">
-                <div className="flex justify-between mb-5 border-b border-[#d9d9d9]">
+              <div key={order.id} className="rounded-sm p-8 my-4  bg-[#0a0e13]">
+                <div className="flex justify-between mb-5 border-b border-[#27303f]">
                   <span className="pb-5">
                     <span className="font-semibold pr-1">Order reference:</span>{" "}
                     {order.id}
@@ -109,8 +109,8 @@ export default function OrderPage() {
                       <div className="w-[60px]">
                         <Image
                           src={item.image || ""}
-                          width={60}
-                          height={60}
+                          width={80}
+                          height={80}
                           alt={item.name}
                           priority={true}
                           className="w-full object-fill"
@@ -119,7 +119,7 @@ export default function OrderPage() {
                     </div>
                   ))}
                 </div>
-                <p className="flex justify-between mt-5 pt-5 border-t border-[#d9d9d9]">
+                <p className="flex justify-between mt-5 pt-5 border-t border-[#27303f]">
                   <span className="font-semibold">Total:</span>
 
                   <span> {order.amount} SEK</span>

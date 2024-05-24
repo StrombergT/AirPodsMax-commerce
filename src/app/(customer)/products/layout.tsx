@@ -5,7 +5,9 @@ export default function ProductsLayout({
 }>) {
   return (
     <div>
-      <div className="min-h-screen bg-[#ffff]">{children}</div>
+      <div className="min-h-screen bg-[#010409] overflow-y-scroll overflow-x-hidden">
+        {children}
+      </div>
     </div>
   );
 }

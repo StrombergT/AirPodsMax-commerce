@@ -5,7 +5,7 @@ export default function OrderLayout({
 }>) {
   return (
     <div>
-      <div className="min-h-screen bg-[#ffff]">{children}</div>
+      <div className="min-h-screen bg-[#010409]">{children}</div>
     </div>
   );
 }

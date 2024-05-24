@@ -12,16 +12,16 @@ export default function Hero() {
       <motion.div
         initial="hidden"
         animate="visible"
-        className="flex flex-col lg:flex-row items-center justify-center px-4 md:px-10 lg:px-20 mt-20 lg:mt-40 mb-20 lg:mb-40 w-full h-full relative z-[20]"
+        className="flex flex-col lg:flex-row items-center justify-center px-4 md:px-10 lg:px-20 mt-20 lg:mt-20 w-full h-full relative z-[20] ,"
       >
         <div className="flex flex-col gap-5 justify-center m-auto text-center lg:text-left w-full lg:w-1/2">
           <motion.div
             variants={slideInFromLeft(0.5)}
-            className="flex flex-col gap-6 mt-6 text-4xl md:text-6xl lg:text-8xl font-bold text-white"
+            className="flex flex-col gap-6 text-4xl md:text-6xl lg:text-8xl font-bold text-white"
           >
             <span>
               Providing
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-cyan-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-cyan-500">
                 {" "}
                 the best{" "}
               </span>
@@ -39,9 +39,9 @@ export default function Hero() {
           </motion.p>
           <motion.a
             variants={slideInFromLeft(0.5)}
-            className="py-2 px-4 button-primary text-center text-white cursor-pointer rounded-lg mx-auto lg:mx-0 max-w-[200px] uppercase"
+            className="hover:border-white/40 flex items-center justify-center rounded-full border border-transparent bg-violet-600 px-6 md:px-10 lg:px-16 py-3 text-center text-lg font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 cursor-pointer uppercase  lg:w-80"
           >
-            Buy
+            read more
           </motion.a>
         </div>
 

@@ -24,7 +24,7 @@ export default function Menu() {
         className="cursor-pointer"
       />
       {open && (
-        <div className="bg-[#171717] text-white absolute left-0 top-10 w-full h-[calc(100vh-6rem)] flex flex-col gap-8 items-center justify-center text-3xl z-10">
+        <div className="bg-[#171717] text-white absolute left-0 top-10 w-full h-[calc(100vh-6rem)] flex flex-col gap-8 items-center justify-center text-3xl z-10 mt-7">
           {links.map((item) => (
             <Link href={item.url} key={item.id} onClick={() => setOpen(false)}>
               {item.title}

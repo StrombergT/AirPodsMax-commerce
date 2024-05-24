@@ -1,25 +1,25 @@
 "use client";
-import { useState } from "react";
 
-export default function AlternativImage() {
-  const [currentImage, setCurrentImage] = useState("");
+interface AlternativImageProps {
+  originalImage: string;
+  setCurrentImage: (image: string) => void;
+}
 
-  const altImages = {
-    alt1: "https://www.elgiganten.se/image/dv_web_D1800010021004136/465970/apple-airpods-max-tradlosa-around-ear-horlurar-pink--pdp_zoom-3000.jpg",
-    alt2: "https://www.elgiganten.se/image/dv_web_D1800010021004148/465965/apple-airpods-max-tradlosa-around-ear-horlurar-green--pdp_zoom-3000.jpg",
-    alt3: "https://www.elgiganten.se/image/dv_web_D1800010021004121/465968/apple-airpods-max-tradlosa-around-ear-horlurar-sky-blue--pdp_zoom-3000.jpg",
-    alt4: "https://www.elgiganten.se/image/dv_web_D1800010021004254/465968/apple-airpods-max-tradlosa-around-ear-horlurar-sky-blue--pdp_zoom-3000.jpg",
-  };
+const altImages: string[] = ["/blue.png", "/test.png", "/green2.png"];
 
+export default function AlternativImage({
+  originalImage,
+  setCurrentImage,
+}: AlternativImageProps) {
   return (
-    <div className="flex flex-row justify-between h-24">
-      <div className="flex flex-row space-x-2">
-        {Object.values(altImages).map((url, index) => (
+    <div className="flex flex-row justify-between h-32 max-w-[400px] overflow-x-scroll ">
+      <div className="flex flex-row space-x-2 ">
+        {[originalImage, ...altImages].map((url, index) => (
           <img
             key={index}
             src={url}
             alt={`Alt ${index + 1}`}
-            className="w-32 h-32 rounded-md cursor-pointer"
+            className="w-32 h-32 rounded-md cursor-pointer "
             onClick={() => setCurrentImage(url)}
           />
         ))}

@@ -8,7 +8,7 @@ export default function AnimationText() {
   const [refTop, inViewTop] = useInView({ triggerOnce: true });
 
   return (
-    <div className="w-full h-auto flex flex-col items-center justify-center mt-10 sm:mt-20 md:mt-40">
+    <div className="w-full h-auto flex flex-col items-center justify-center mt-10 sm:mt-20 md:mt-10">
       <motion.blockquote
         ref={refTop}
         variants={slideInFromTop}
