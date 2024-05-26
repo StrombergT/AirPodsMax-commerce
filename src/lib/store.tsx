@@ -10,8 +10,16 @@ type CartState = {
   removeProduct: (item: Product) => void;
 };
 
+/**
+ * Custom Hook to manage the shoppingcart state
+ */
 export const useCartStore = create<CartState>()(
   persist(
+    /**
+     * Initial state and actions to modify shoppingcart
+     * @param set Function to update the state
+     * @returns The cartstate and items actions
+     */
     (set) => ({
       cart: [],
       addProduct: (item) =>

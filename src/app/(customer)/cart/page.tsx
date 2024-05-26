@@ -47,18 +47,19 @@ export default function CartPage() {
           cartStore.cart.map((item) => (
             <div
               key={item.id}
-              className="border border-[#27303f] rounded-lg p-2 mb-4 flex items-center justify-between"
+              className="border border-[#27303f] rounded-lg p-2 mb-4 flex flex-col sm:flex-row items-center justify-between"
             >
-              <div className="flex items-center">
+              <div className="flex flex-col sm:flex-row items-center">
                 <Image
                   src={item.image || ""}
                   alt={item.name}
                   width={200}
                   height={200}
+                  className="w-full sm:w-32 h-auto"
                 />
-                <span className="ml-4">{item.name}</span>
+                <span className="ml-4 mt-2 sm:mt-0">{item.name}</span>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center mt-2 sm:mt-0">
                 <button onClick={() => cartStore.removeProduct(item)}>
                   <Minus />
                 </button>
@@ -77,7 +78,7 @@ export default function CartPage() {
           </p>
         )}
       </div>
-      <div className="h-1/2 p-4 bg-[#010409] flex flex-col gap-4 justify-center lg:h-full lg:w-1/3 lg:px-20 xl:px-40">
+      <div className="h-1/2 p-4 bg-[#010409] flex flex-col gap-4 justify-center lg:h-full lg:w-1/2 lg:px-20 xl:px-40">
         <div className="flex flex-col gap-1">
           <div className="flex justify-between">
             <span className="text-lg">Subtotal items</span>
@@ -98,10 +99,10 @@ export default function CartPage() {
           </div>
         </div>
         <button
-          className="bg-[#171717] text-white p-3 rounded-md w-full mt-4"
+          className="hover:border-white/40 flex items-center justify-center rounded-full border border-transparent bg-violet-600 px-16 py-3 text-center text-lg font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 w-full sm:w-auto md:w-64 lg:w-96"
           onClick={handleCheckout}
         >
-          CHECKOUT
+          Checkout
         </button>
       </div>
     </div>
