@@ -3,43 +3,51 @@ import { db } from "@/src/lib/db";
 import { Product } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async () => {
-  const user = await getAuthSession();
+/**
+ * Handler for GET request to fetch orders for authenticated user
+ * @returns {Promise<NextResponse>} A Promise tht resolves to the response object
+ * with the orders data or an error
+ */
+
+export async function GET(): Promise<NextResponse> {
+  const sessionUser = await getAuthSession();
+
+  if (!sessionUser || !sessionUser.user || !sessionUser.user.email) {
+    return NextResponse.json({
+      message: "Sign in to be able to make an order",
+    });
+  }
+
+  const user = await db.user.findUnique({
+    where: {
+      email: sessionUser.user.email,
+    },
+  });
 
   if (!user) {
     return NextResponse.json({ message: "user not found" });
   }
 
-  const orders = await db.order.findMany({
-    where: { userId: user?.user?.id },
-    include: {
-      products: true,
-    },
-    orderBy: {
-      createdDate: "desc",
-    },
-  });
+  const orders =
+    (await db.order.findMany({
+      where: { userId: user?.id },
+      include: {
+        products: true,
+      },
+      orderBy: {
+        createdDate: "desc",
+      },
+    })) || [];
   return NextResponse.json(orders);
-};
-/*
-export const GET = async (req: Request) => {
-  const url = new URL(req.url);
-  const searchParams = new URLSearchParams(url.searchParams);
-  const userId = searchParams.get("userId");
+}
 
-  let queryData: any = {};
-  if (userId) {
-    queryData.userId = userId;
-  }
-
-  const orders = await db.order.findMany({
-    where: queryData,
-  });
-
-  return NextResponse.json(orders);
-};
-*/
-export const POST = async (req: NextRequest) => {
+/**
+ * POST request handler to create a new order
+ * @param {NextRequest} req - Containing order data
+ * @returns {Promise<NextResponse>} A Promise tht resolves to the response object
+ * with the orders data or an error
+ */
+export async function POST(req: NextRequest): Promise<NextResponse> {
   const session = await getAuthSession();
 
   if (session) {
@@ -85,7 +93,7 @@ export const POST = async (req: NextRequest) => {
       };
 
       for (const product of products) {
-        createOrderItem(product);
+        await createOrderItem(product);
       }
 
       const order = await db.order.findUnique({
@@ -109,4 +117,4 @@ export const POST = async (req: NextRequest) => {
       { status: 401 }
     );
   }
-};
+}

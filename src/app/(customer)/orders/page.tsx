@@ -2,27 +2,12 @@
 import Container from "@/src/components/Container";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-//import { fetchOrders } from "../../api/orders/route";
 import { useSession } from "next-auth/react";
-import { Order } from "@prisma/client";
 import { ExtendedOrder } from "@/src/types/ExtendedOrder";
 
 export default function OrderPage() {
   const [orders, setOrders] = useState<ExtendedOrder[]>([]);
-  //const { data: session } = useSession();
-  // const session = await // get session
-  // const r = await fetch(
-  //  `http://localhost:3000/api/user?email=${session?.user.email}`
-  //);
-  //const user = await r.json();
-
-  // const res = await fetch(`http://localhost:3000/api/orders?userId=${user.id}`);
-  // const orders = await res.json();
-  //const res = await fetch(`http://localhost:3000/api/orders`, {
-  //method: "GET",
-  //});
-  // const orders: ExtendedOrder[] = (await res.json()) || [];
-
+  const { data: session } = useSession();
   /**
    * Fetches the orders for the logged-in user.
    *
@@ -31,9 +16,10 @@ export default function OrderPage() {
    */
 
   useEffect(() => {
-    const fetchOrders = () => {
+    if (session) {
       fetch(process.env.NEXT_PUBLIC_API_BASE_URL + "/api/orders", {
         method: "GET",
+        cache: "no-cache",
       })
         .then((res) => {
           if (!res.ok) {
@@ -43,19 +29,19 @@ export default function OrderPage() {
         })
         .then((data) => {
           setOrders(data || []);
+          console.log(data);
         })
         .catch((error) => {
-          console.error("error fetching", error);
+          console.error("Error fetching orders", error);
         });
-    };
-    fetchOrders();
-  }, []);
+    }
+  }, [session]);
 
-  if (orders === null) {
+  if (!session) {
     return (
       <div className="flex flex-col gap-5 items-center justify-center h-screen text-center m-auto">
         <Image
-          alt="done"
+          alt="login"
           height={200}
           width={200}
           src={"/login.png"}
