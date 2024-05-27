@@ -28,8 +28,15 @@ const AnimationProvider = ({ src, width, height, index }: Props) => {
       animate={inView ? "visible" : "hidden"}
       custom={index}
       transition={{ delay: index * animationDelay, duration: 0.5 }}
+      className="relative w-full h-0 pb-[65%] shadow-lg rounded-lg overflow-hidden"
     >
-      <Image src={src} width={width} height={height} alt="headphone image" />
+      <Image
+        src={src}
+        alt="headphone image"
+        fill
+        sizes="(max-width: 600px) 100vw, 50vw"
+        className="object-cover rounded-lg"
+      />
     </motion.div>
   );
 };

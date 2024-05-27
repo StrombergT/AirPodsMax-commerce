@@ -10,9 +10,39 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
 
+/**
+ * Represents the props for the PayPage component.
+ */
+interface PayPage {
+  /**
+   * The parameters object containing the order ID.
+   */
+  params: {
+    /**
+     * The ID of the order.
+     */
+    id: string;
+  };
+}
+
+/**
+ * Represents the payment page.
+ * @param {PayPage} props - The component props.
+ * @returns {JSX.Element} The JSX element representing the payment page.
+ */
+
 export default function PayPage({ params }: { params: { id: string } }) {
   const [clientSecret, setClientSecret] = useState("");
   const { id } = params;
+
+  /**
+   * Fetches the client secret for the payment intent.
+   *
+   * This useEffect hook runs once when the component is mounted or when the `id` changes.
+   * It sends a POST request to the server to create a payment intent and retrieve the client secret.
+   * If the request is successful, the client secret is saved in the component's state.
+   * If the request fails, an error is logged to the console.
+   */
 
   useEffect(() => {
     const makeRequest = async () => {

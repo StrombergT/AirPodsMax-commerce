@@ -1,9 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { authenticatePassword } from "./lib/authenticatePassword";
 
+/**
+ * Configuration object for the middleware.
+ */
 export const config = {
   matcher: "/admin/:path*",
 };
+
+/**
+ * Middleware function to authenticate requests.
+ * @param {NextRequest} request - The incoming request.
+ * @returns {Promise<NextResponse | void>} The response or void if authenticated.
+ */
 
 export async function middleware(request: NextRequest) {
   if ((await isAuthenticated(request)) === false) {
@@ -13,6 +22,12 @@ export async function middleware(request: NextRequest) {
     });
   }
 }
+
+/**
+ * Function to check if the request is authenticated.
+ * @param {NextRequest} request - The incoming request.
+ * @returns {Promise<boolean>} A promise that resolves to true if authenticated, false otherwise.
+ */
 
 async function isAuthenticated(request: NextRequest) {
   const authHeader =

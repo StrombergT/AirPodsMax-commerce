@@ -23,6 +23,13 @@ export default function OrderPage() {
   //});
   // const orders: ExtendedOrder[] = (await res.json()) || [];
 
+  /**
+   * Fetches the orders for the logged-in user.
+   *
+   * This effect runs once when the component is mounted and fetches the orders
+   * from the server, setting them in the component state.
+   */
+
   useEffect(() => {
     const fetchOrders = () => {
       fetch(process.env.NEXT_PUBLIC_API_BASE_URL + "/api/orders", {

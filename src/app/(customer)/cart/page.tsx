@@ -15,6 +15,16 @@ export default function CartPage() {
     return acc + item.quantity! * item.unit_amount!;
   }, 0);
 
+  /**
+   *  Handles the checkout process
+   *
+   * If user not logged in, they will be redirected to sig-in page.
+   * if logged in, an order is sent to the server and the user is redirected to payment page.
+   *
+   * @async
+   * @function
+   */
+
   const handleCheckout = async () => {
     if (!session) {
       router.push("/sign-in");

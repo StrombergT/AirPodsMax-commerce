@@ -11,7 +11,7 @@ export default function Layout({
   return (
     <div>
       <Navbar />
-      <div className="min-h-screen bg-[#010409] overflow-y-scroll overflow-x-hidden">
+      <div className="min-h-screen bg-[#000000] overflow-y-scroll overflow-x-hidden">
         {children}
       </div>
       <ToastContainer position="bottom-right" theme="dark" autoClose={3000} />
