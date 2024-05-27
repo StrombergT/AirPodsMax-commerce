@@ -40,6 +40,7 @@ async function ProductsTable() {
       id: true,
       name: true,
       unit_amount: true,
+      //   _count: { select: { orders: true } },
       quantity: true,
     },
     orderBy: { name: "asc" },
@@ -88,6 +89,7 @@ async function ProductsTable() {
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator className="bg-gray-400" />
+                    <DeleteItemDropDown id={product.id} disabled={false} />
                   </DropdownMenuContent>
                 </DropdownMenu>
               </TableCell>

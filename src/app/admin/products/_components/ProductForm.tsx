@@ -4,26 +4,45 @@ import { Input } from "@/src/components/ui/input";
 import { Button } from "@/src/components/ui/button";
 import { useRef, useState } from "react";
 import { Textarea } from "@/src/components/ui/textarea";
-import { Label } from "@/src/components/ui/label";
 import { useFormStatus } from "react-dom";
 import { PutBlobResult } from "@vercel/blob";
 import { AddProduct, updateProduct } from "../../_actions/products";
 import { Product } from "@prisma/client";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/src/components/ui/form";
+const ProductFormSchema = z.object({
+  name: z.string().min(1, { message: "String must not be empty" }),
+  description: z.string().min(1, { message: "Description must not be empty" }),
+  price: z.string().regex(/^\d+$/, { message: "Price must be a number" }),
+  image: z.string().url().nullable(),
+});
+
+type ProductFormFields = z.infer<typeof ProductFormSchema>;
 
 export default function ProductForm({ product }: { product?: Product | null }) {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
-  const [formdata, setFormdata] = useState<{
-    name: string;
-    description: string;
-    price: string;
-    blob: File | null;
-    image: string | null;
-  }>({ name: "", description: "", price: "", blob: null, image: null });
 
-  async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const form = useForm<ProductFormFields>({
+    resolver: zodResolver(ProductFormSchema),
+    defaultValues: {
+      name: product?.name || "",
+      description: product?.description || "",
+      price: product?.unit_amount.toString() || "",
+      image: product?.image || null,
+    },
+  });
 
+  async function handleFormSubmit(values: ProductFormFields) {
     if (!inputFileRef.current?.files) {
       throw new Error("No file selected");
     }
@@ -40,10 +59,12 @@ export default function ProductForm({ product }: { product?: Product | null }) {
     setBlob(newBlob);
 
     const data = {
-      name: formdata.name,
-      description: formdata.description,
-      unit_amount: parseInt(formdata.price),
-      image: newBlob.url,
+      name: values.name,
+      description: values.description,
+      unit_amount: parseInt(values.price),
+      //image: newBlob.url,
+      image:
+        "https://www.elgiganten.se/image/dv_web_D1800010021004117/465966/apple-airpods-max-tradlosa-around-ear-horlurar-space-grey--pdp_zoom-3000.jpg",
     };
     if (product) {
       await updateProduct(product.id, data);
@@ -52,57 +73,88 @@ export default function ProductForm({ product }: { product?: Product | null }) {
     }
   }
 
+  console.log(form.watch());
+  console.log(form.formState.errors);
+
   return (
-    <>
-      <form onSubmit={handleFormSubmit}>
-        <div className="space-y-2">
-          <Label htmlFor="name">Name</Label>
-          <Input
-            type="text"
-            id="name"
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleFormSubmit)}>
+        <div className="space-y-2 bg-gray-100 p-6 rounded-lg">
+          <FormField
+            control={form.control}
             name="name"
-            value={formdata.name}
-            onChange={(e) => setFormdata({ ...formdata, name: e.target.value })}
-            required
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="airpod max"
+                    {...field}
+                    className="border-none bg-gray-200"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="price">Price In SEK</Label>
-          <Input
-            type="number"
-            id="price"
+          <FormField
+            control={form.control}
             name="price"
-            value={formdata.price}
-            onChange={(e) =>
-              setFormdata({ ...formdata, price: e.target.value })
-            }
-            required
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Price</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="5000"
+                    {...field}
+                    className="border-none bg-gray-200"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="description">Description</Label>
-          <Textarea
-            id="description"
+          <FormField
+            control={form.control}
             name="description"
-            value={formdata.description}
-            onChange={(e) =>
-              setFormdata({ ...formdata, description: e.target.value })
-            }
-            required
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Description</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="write something about the product"
+                    {...field}
+                    className="border-none bg-gray-200"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="image">Image</Label>
-          <input
-            name="file"
-            accept="image/*"
-            onChange={(e) =>
-              e.target.files?.[0] !== undefined &&
-              setFormdata({ ...formdata, blob: e.target.files?.[0] })
-            }
-            ref={inputFileRef}
-            type="file"
-            required
+          <FormField
+            control={form.control}
+            name="image"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Image</FormLabel>
+                <FormControl>
+                  <Input
+                    name="file"
+                    accept="image/*"
+                    onChange={(e) =>
+                      e.target.files?.[0] !== undefined &&
+                      form.setValue(
+                        "image",
+                        URL.createObjectURL(e.target.files[0])
+                      )
+                    }
+                    ref={inputFileRef}
+                    type="file"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
         </div>
         <SubmitButton />
@@ -113,15 +165,15 @@ export default function ProductForm({ product }: { product?: Product | null }) {
           <img src={blob.url} width={200} height={200} alt="" />
         </div>
       )}
-    </>
+    </Form>
   );
-}
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending} variant={"secondary"}>
-      {pending ? "Saving..." : "Save"}
-    </Button>
-  );
+  function SubmitButton() {
+    const { pending } = useFormStatus();
+    return (
+      <Button type="submit" disabled={pending} variant={"secondary"}>
+        {pending ? "Saving..." : "Save"}
+      </Button>
+    );
+  }
 }
