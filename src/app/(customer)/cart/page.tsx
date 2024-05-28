@@ -109,7 +109,7 @@ export default function CartPage() {
           </div>
         </div>
         <button
-          className="hover:border-white/40 flex items-center justify-center rounded-full border border-transparent bg-violet-600 px-16 py-3 text-center text-lg font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 w-full sm:w-auto md:w-64 lg:w-96"
+          className="hover:border-white/40 flex items-center justify-center rounded-full border border-transparent bg-violet-600 px-16 py-3 text-center text-lg font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 w-full sm:w-auto md:w-64 lg:w-full"
           onClick={handleCheckout}
         >
           Checkout

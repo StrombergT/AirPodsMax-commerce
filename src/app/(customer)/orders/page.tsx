@@ -4,10 +4,12 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { ExtendedOrder } from "@/src/types/ExtendedOrder";
+import { useCartStore } from "@/src/lib/store";
 
 export default function OrderPage() {
   const [orders, setOrders] = useState<ExtendedOrder[]>([]);
   const { data: session } = useSession();
+  const { clearCart } = useCartStore();
   /**
    * Fetches the orders for the logged-in user.
    *
@@ -36,6 +38,10 @@ export default function OrderPage() {
         });
     }
   }, [session]);
+
+  useEffect(() => {
+    clearCart();
+  }, [clearCart]);
 
   if (!session) {
     return (
