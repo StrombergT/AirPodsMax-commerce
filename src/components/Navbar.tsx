@@ -40,7 +40,7 @@ export default function Navbar() {
           <div className="sm:hidden">
             <Menu />
           </div>
-          <div className="hidden sm:flex items-center gap-4">
+          <div className="hidden sm:flex items-center gap-4 relative">
             <CartIcon />
             {session?.user ? (
               <div className="flex items-center gap-4">

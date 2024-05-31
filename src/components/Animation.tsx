@@ -11,7 +11,7 @@ export default function Animation() {
   return (
     <section
       id="headphones"
-      className="flex flex-col lg:flex-row items-center justify-center px-4 md:px-10 lg:px-20 mb-10 lg:mb-10 w-full h-full relative z-[20] mt-40"
+      className="flex flex-col lg:flex-row items-center justify-center px-4 md:px-10 lg:px-20 mb-10 lg:mb-10 w-full h-full relative z-[20] mt-20"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 w-full max-w-[1500px] mx-auto">
         {Headphone_data.map((headphone, index) => (

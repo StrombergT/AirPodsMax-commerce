@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { slideInFromLeft, slideInFromRight } from "../utils/motion";
 import Container from "./Container";
+import Button from "./ui/ButtonComponent";
 
 export default function Hero() {
   return (
@@ -12,7 +13,7 @@ export default function Hero() {
       <motion.div
         initial="hidden"
         animate="visible"
-        className="flex flex-col lg:flex-row items-center justify-center px-4 md:px-10 lg:px-20 mt-20 lg:mt-20 w-full h-full relative z-[20] ,"
+        className="flex flex-col-reverse lg:flex-row items-center justify-center px-4 md:px-10 lg:px-20 mt-20 lg:mt-20 w-full h-full relative z-[20]"
       >
         <div className="flex flex-col gap-5 justify-center m-auto text-center lg:text-left w-full lg:w-1/2">
           <motion.div
@@ -37,23 +38,25 @@ export default function Hero() {
             accessories. Explore our store to find the perfect pair and check
             out our latest deals and reviews.
           </motion.p>
-          <motion.a
-            variants={slideInFromLeft(0.5)}
-            className="hover:border-white/40 flex items-center justify-center rounded-full border border-transparent bg-violet-600 px-6 md:px-10 lg:px-16 py-3 text-center text-lg font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 cursor-pointer uppercase  lg:w-80"
-          >
-            read more
-          </motion.a>
+          <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 items-center justify-center lg:justify-start">
+            <Button variant="primary" variants={slideInFromLeft(0.5)}>
+              buy
+            </Button>
+            <Button variant="secondary" variants={slideInFromLeft(0.5)}>
+              read more
+            </Button>
+          </div>
         </div>
-
         <motion.div
           variants={slideInFromRight(0.5)}
-          className="w-full lg:w-1/2 flex justify-center items-center mt-10 lg:mt-0"
+          className="w-full lg:w-1/2 flex justify-center items-center sm:mt-0 md:mt-0 lg:mt-0"
         >
           <Image
-            src="https://wallpapers.com/images/hd/anti-noise-airpods-pro-jy2lr059dmp8z8lv.jpg"
+            src="/img/hero black.png"
             alt="Headphones"
             height={500}
             width={500}
+            quality={100}
             className="max-w-full h-auto"
           />
         </motion.div>

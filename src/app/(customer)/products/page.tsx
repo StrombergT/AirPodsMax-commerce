@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Container from "@/src/components/Container";
-import { ProductType } from "@/src/types/ProductType";
 import Link from "next/link";
 import { Product } from "@prisma/client";
 import { useEffect, useState } from "react";
@@ -34,14 +33,14 @@ export default function ProductPage() {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3 relative pb-32 place-items-center">
             {products.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`}>
-                <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-lg border bg-[#0a0e13] shadow-md place-items-center">
+                <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-lg border bg-[#131416] shadow-md place-items-center">
                   <div className="relative mx-3 mt-3 flex h-[300px] overflow-hidden rounded-xl">
                     {product.image && (
                       <Image
                         src={product.image}
                         alt={product.name}
-                        width={200}
-                        height={200}
+                        width={800}
+                        height={800}
                         objectFit="cover"
                         objectPosition="center"
                         quality={100}
@@ -82,59 +81,30 @@ export default function ProductPage() {
             ))}
           </div>
         </Container>
+
         <div className="flex justify-center items-center text-3xl font-bold mb-2 text-gray-300 ">
           <p>Accessories for noise-canceling headphones</p>
         </div>
         <div className="flex justify-center items-center underline">
           <Link href="#">Show accessories</Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-20 bg-[#ddd5d507] ">
-          <img src="/allColors.png" width={700} height={500} alt="" />
-          <img src="/hero2.png" width={700} height={500} alt="" />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 mt-20 justify-center ">
+          <img
+            src="https://www.apple.com/v/airpods-max/f/images/overview/audio_quality_eq__bw20hke6z1ea_xlarge.jpg"
+            width={700}
+            height={500}
+            alt=""
+          />
+
+          <img
+            src="https://www.apple.com/v/airpods-max/f/images/overview/audio_quality_noise_cancellation__bly3c9di4wwi_xlarge.jpg"
+            width={500}
+            height={300}
+            alt=""
+          />
         </div>
       </div>
-      <section className="bg-[#010409]">
-        <div className="w-full px-4 min-h-[600px] mx-auto flex items-center justify-center">
-          <Container>
-            <div className="flex flex-col md:flex-row items-center text-gray-300">
-              <img
-                src="https://specials-images.forbesimg.com/imageserve/5fe5bee6b6006e878b897abf/960x0.png?cropX1=0&cropX2=940&cropY1=201&cropY2=906"
-                width={600}
-                height={600}
-                alt=""
-              />
-              <p className="text-lg md:text-xl ml-10">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                illum eveniet dolores autem vitae corporis veniam quaerat
-                inventore atque minima. Vel, sequi eius. Repellendus cum vel
-                saepe molestiae eius facere?
-              </p>
-            </div>
-          </Container>
-        </div>
-      </section>
     </>
   );
 }
-
-/*
-<div className="max-w-[500px] relative overflow-hidden rounded-lg flex flex-col items-center justify-center hover:opacity-80 ease duration-150">
-                  <div className="relative w-[250px] h-[250px] bg-[#29272743] rounded-full overflow-hidden">
-                    {product.image && (
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        width={200}
-                        height={200}
-                        objectFit="cover"
-                        objectPosition="center"
-                        quality={100}
-                        className="rounded-lg items-center justify-center flex mx-auto mt-6"
-                      />
-                    )}
-                  </div>
-                  <h2 className="text-xl font-semibold mb-1">{product.name}</h2>
-                  <h3>{product.unit_amount} SEK</h3>
-                  })
-                </div>
-*/

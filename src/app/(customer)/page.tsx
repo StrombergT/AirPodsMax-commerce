@@ -7,7 +7,7 @@ import VideoComponent from "@/src/components/VideoComponent";
 export default function HomePage() {
   return (
     <main className="h-full w-full  ">
-      <div className="flex flex-col gap-20">
+      <div className="flex flex-col">
         <Hero />
         <Animation />
         <AnimationText />

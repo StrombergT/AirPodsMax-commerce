@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer>
-      <div className="bg-[#171717] ">
+      <div className="bg-[#131416]">
         <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-24 lg:px-6">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5 ">
             <div>

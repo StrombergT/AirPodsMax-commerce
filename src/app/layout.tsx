@@ -4,7 +4,6 @@ import "./globals.css";
 import { Toaster } from "@/src/components/ui/toaster";
 import { cn } from "../lib/utils";
 import Provider from "../components/Provider";
-import Notification from "../components/Notification";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -22,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen font-sans antialiased",
+          "min-h-screen font-sans antialiased bg-[#010409]",
 
           inter.variable
         )}
@@ -31,7 +30,6 @@ export default function RootLayout({
           <div>
             {children}
             <Toaster />
-            <Notification />
           </div>
         </Provider>
       </body>

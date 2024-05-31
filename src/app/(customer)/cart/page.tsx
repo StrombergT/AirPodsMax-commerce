@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Minus, Plus } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Button from "@/src/components/ui/ButtonComponent";
+import { H2, SPAN } from "@/src/components/ui/TextComponent";
 
 export default function CartPage() {
   const cartStore = useCartStore();
@@ -51,69 +53,70 @@ export default function CartPage() {
   };
 
   return (
-    <div className="h-screen flex flex-col lg:flex-row mt-16 bg-[#0a0e13] text-gray-300">
-      <div className="h-1/2 p-4 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 lg:px-20 xl:px-40">
+    <div className="min-h-screen flex flex-col lg:flex-row mt-16 bg-[#0a0e13] text-gray-300">
+      <div className="flex-1 p-4 flex flex-col justify-center overflow-auto lg:px-20 xl:px-40">
         {cartStore.cart.length > 0 ? (
           cartStore.cart.map((item) => (
             <div
               key={item.id}
-              className="border border-[#27303f] rounded-lg p-2 mb-4 flex flex-col sm:flex-row items-center justify-between"
+              className="border border-[#27303f] rounded-lg p-4 mb-4 flex flex-col sm:flex-row items-center justify-between"
             >
-              <div className="flex flex-col sm:flex-row items-center">
+              <div className="flex flex-col sm:flex-row items-center sm:gap-4">
                 <Image
                   src={item.image || ""}
                   alt={item.name}
-                  width={200}
-                  height={200}
-                  className="w-full sm:w-32 h-auto"
+                  width={300}
+                  height={300}
+                  className="w-full sm:w-32 lg:w-48 h-auto rounded-lg"
                 />
-                <span className="ml-4 mt-2 sm:mt-0">{item.name}</span>
+                <span className="mt-2 sm:mt-0">{item.name}</span>
               </div>
-              <div className="flex items-center mt-2 sm:mt-0">
-                <button onClick={() => cartStore.removeProduct(item)}>
+              <div className="flex items-center mt-2 sm:mt-0 gap-2">
+                <button
+                  onClick={() => cartStore.removeProduct(item)}
+                  className="p-2 bg-gray-700 rounded-full hover:bg-gray-600"
+                >
                   <Minus />
                 </button>
                 <span className="text-md w-[30px] flex items-center justify-center">
                   {item.quantity}
                 </span>
-                <button onClick={() => cartStore.addProduct(item)}>
+                <button
+                  onClick={() => cartStore.addProduct(item)}
+                  className="p-2 bg-gray-700 rounded-full hover:bg-gray-600"
+                >
                   <Plus />
                 </button>
               </div>
             </div>
           ))
         ) : (
-          <p className="flex items-center justify-center text-2xl font-bold text-gray-600">
-            Your cart is empty
-          </p>
+          <H2 variant="shopping-cart">Your cart is empty</H2>
         )}
       </div>
-      <div className="h-1/2 p-4 bg-[#010409] flex flex-col gap-4 justify-center lg:h-full lg:w-1/2 lg:px-20 xl:px-40">
-        <div className="flex flex-col gap-1">
+      <div className="flex-1 p-4 bg-[#010409] flex flex-col gap-4 justify-center lg:px-20 xl:px-40">
+        <div className="flex flex-col gap-2">
           <div className="flex justify-between">
-            <span className="text-lg">Subtotal items</span>
-            <span className="text-lg">{totalPrice} SEK</span>
+            <SPAN>Subtotal items</SPAN>
+            <SPAN>{totalPrice} SEK</SPAN>
           </div>
           <div className="flex justify-between">
-            <span className="text-lg">Service Cost</span>
-            <span className="text-lg">0.00 SEK</span>
+            <SPAN>Service Cost</SPAN>
+            <SPAN>0.00 SEK</SPAN>
           </div>
           <div className="flex justify-between">
-            <span className="text-lg">Delivery Cost</span>
-            <span className="text-lg text-green-500">FREE!</span>
+            <SPAN>Delivery Cost</SPAN>
+            <SPAN className=" text-green-500">FREE!</SPAN>
           </div>
           <hr className="my-2" />
           <div className="flex justify-between items-center">
-            <span className="font-semibold text-2xl">TOTAL</span>
-            <span className="font-bold text-xl">{totalPrice} SEK</span>
+            <SPAN variant="secondary">TOTAL</SPAN>
+            <SPAN variant="secondary">{totalPrice} SEK</SPAN>
           </div>
         </div>
-        <button
-          className="hover:border-white/40 flex items-center justify-center rounded-full border border-transparent bg-violet-600 px-16 py-3 text-center text-lg font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 w-full sm:w-auto md:w-64 lg:w-full"
-          onClick={handleCheckout}
-        >
+        <Button variant="primary" onClick={handleCheckout}>
           Checkout
-        </button>
+        </Button>
       </div>
     </div>
   );

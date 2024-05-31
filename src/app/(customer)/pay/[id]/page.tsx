@@ -1,6 +1,6 @@
 "use client";
 
-import CheckoutForm from "@/src/components/Checkout";
+import CheckoutForm from "@/src/components/form/Checkout";
 import Container from "@/src/components/Container";
 import { Elements } from "@stripe/react-stripe-js";
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";

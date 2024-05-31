@@ -16,7 +16,7 @@ export default function Menu() {
   return (
     <div>
       <Image
-        src={open ? "/close.png" : "/open.png"}
+        src={open ? "/close.png" : "/img/open.png"}
         alt=""
         width={20}
         height={20}
