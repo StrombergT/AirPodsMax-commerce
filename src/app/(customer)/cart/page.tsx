@@ -32,17 +32,20 @@ export default function CartPage() {
       router.push("/sign-in");
     } else {
       try {
-        const res = await fetch("http://localhost:3000/api/orders", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            products: cartStore.cart,
-            amount: totalPrice,
-            status: "not paid",
-            currency: "",
-            email: session.user.email,
-          }),
-        });
+        const res = await fetch(
+          process.env.NEXT_PUBLIC_API_BASE_URL + "/api/orders",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              products: cartStore.cart,
+              amount: totalPrice,
+              status: "not paid",
+              currency: "",
+              email: session.user.email,
+            }),
+          }
+        );
         const data = await res.json();
         console.log(data);
         router.push(`/pay/${data.id}`);
