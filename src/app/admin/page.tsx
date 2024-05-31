@@ -1,5 +1,7 @@
+import { H1 } from "@/src/components/ui/TextComponent";
+
 const page = async () => {
-  return <h1 className="">Homepage Admin</h1>;
+  return <H1>Homepage Admin</H1>;
 };
 
 export default page;

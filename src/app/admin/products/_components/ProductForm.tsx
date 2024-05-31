@@ -64,7 +64,7 @@ export default function ProductForm({ product }: { product?: Product | null }) {
       unit_amount: parseInt(values.price),
       //image: newBlob.url,
       image:
-        "https://www.elgiganten.se/image/dv_web_D1800010021004117/465966/apple-airpods-max-tradlosa-around-ear-horlurar-space-grey--pdp_zoom-3000.jpg",
+        "https://img-new.cgtrader.com/items/2748987/41103d308e/apple-airpods-max-in-all-official-colors-3d-model-41103d308e.jpg",
     };
     if (product) {
       await updateProduct(product.id, data);
@@ -79,7 +79,7 @@ export default function ProductForm({ product }: { product?: Product | null }) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleFormSubmit)}>
-        <div className="space-y-2 bg-gray-100 p-6 rounded-lg">
+        <div className="space-y-2 bg-[#131416] p-6 rounded-lg text-gray-300">
           <FormField
             control={form.control}
             name="name"
@@ -171,7 +171,12 @@ export default function ProductForm({ product }: { product?: Product | null }) {
   function SubmitButton() {
     const { pending } = useFormStatus();
     return (
-      <Button type="submit" disabled={pending} variant={"secondary"}>
+      <Button
+        type="submit"
+        disabled={pending}
+        variant={"secondary"}
+        className="mt-5"
+      >
         {pending ? "Saving..." : "Save"}
       </Button>
     );
