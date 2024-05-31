@@ -9,6 +9,7 @@ const nextConfig = {
       "wallpaperaccess.com",
       "audioxpress.com",
       "w0.peakpx.com",
+      "img-new.cgtrader.com",
     ],
   },
 };
