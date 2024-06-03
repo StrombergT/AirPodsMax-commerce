@@ -29,6 +29,7 @@ export default function CartPage() {
 
   const handleCheckout = async () => {
     if (!session) {
+      sessionStorage.setItem("redirectAfterLogin", window.location.href);
       router.push("/sign-in");
     } else {
       try {
@@ -109,7 +110,7 @@ export default function CartPage() {
           </div>
           <div className="flex justify-between">
             <SPAN>Delivery Cost</SPAN>
-            <SPAN className=" text-green-500">FREE!</SPAN>
+            <SPAN className="text-green-500">FREE!</SPAN>
           </div>
           <hr className="my-2" />
           <div className="flex justify-between items-center">

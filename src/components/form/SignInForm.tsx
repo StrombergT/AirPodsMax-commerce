@@ -51,8 +51,10 @@ const SignInForm = () => {
         variant: "destructive",
       });
     } else {
+      const redirectTo = sessionStorage.getItem("redirectAfterLogin") || "/";
+      sessionStorage.removeItem("redirectAfterLogin");
       router.refresh();
-      router.push("/");
+      router.push(redirectTo);
     }
   };
   return (
