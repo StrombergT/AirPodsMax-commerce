@@ -8,7 +8,7 @@ const SignOutButton = () => {
         onClick={() =>
           signOut({
             redirect: true,
-            callbackUrl: `${window.location.origin}/sign-in`,
+            callbackUrl: process.env.NEXT_PUBLIC_API_BASE_URL + "/",
           })
         }
         variant={"destructive"}

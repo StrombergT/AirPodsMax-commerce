@@ -89,19 +89,16 @@ export default function ProductPage() {
           <Link href="#">Show accessories</Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-20 justify-center ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
           <img
             src="https://www.apple.com/v/airpods-max/f/images/overview/audio_quality_eq__bw20hke6z1ea_xlarge.jpg"
-            width={700}
-            height={500}
-            alt=""
+            className="w-full h-auto"
+            alt="Audio quality"
           />
-
           <img
             src="https://www.apple.com/v/airpods-max/f/images/overview/audio_quality_noise_cancellation__bly3c9di4wwi_xlarge.jpg"
-            width={500}
-            height={300}
-            alt=""
+            className="w-full h-auto"
+            alt="Noise cancellation"
           />
         </div>
       </div>
