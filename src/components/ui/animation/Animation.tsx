@@ -1,7 +1,7 @@
 import React from "react";
-import { Headphone_data } from "../constants";
+import { Headphone_data } from "../../../constants";
 import AnimationProvider from "./AnimationProvider";
-import { slideInFromLeft, slideInFromRight } from "../utils/motion";
+import { slideInFromLeft, slideInFromRight } from "../../../utils/motion";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 

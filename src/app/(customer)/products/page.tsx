@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Container from "@/src/components/Container";
+import Container from "@/src/components/layout/Container";
 import Link from "next/link";
 import { Product } from "@prisma/client";
 import { useEffect, useState } from "react";

@@ -1,10 +1,11 @@
 "use client";
-import Container from "@/src/components/Container";
+import Container from "@/src/components/layout/Container";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { ExtendedOrder } from "@/src/types/ExtendedOrder";
 import { useCartStore } from "@/src/lib/store";
+import { H1 } from "@/src/components/ui/Text/TextComponent";
 
 export default function OrderPage() {
   const [orders, setOrders] = useState<ExtendedOrder[]>([]);
@@ -50,11 +51,11 @@ export default function OrderPage() {
           alt="login"
           height={200}
           width={200}
-          src={"/login.png"}
+          src={"/img/login.png"}
           priority={true}
           className="w-auto"
         />
-        <h1 className="text-xl">You need to be logged in to see your orders</h1>
+        <H1>You need to be logged in to see your orders</H1>
       </div>
     );
   }
@@ -66,8 +67,9 @@ export default function OrderPage() {
           alt="done"
           height={150}
           width={150}
-          src={"/box.png"}
+          src={"/img/box.png"}
           priority={true}
+          className="bg-gray-200 rounded-2xl"
         />
         <h1 className="my-5 flex justify-between text-2xl ">
           No orders placed.

@@ -1,8 +1,8 @@
 "use client";
-import Animation from "@/src/components/Animation";
-import AnimationText from "@/src/components/AnimationText";
-import Hero from "@/src/components/Hero";
-import VideoComponent from "@/src/components/VideoComponent";
+import Animation from "@/src/components/ui/animation/Animation";
+import AnimationText from "@/src/components/ui/animation/AnimationText";
+import Hero from "@/src/components/home/Hero";
+import VideoComponent from "@/src/components/home/VideoComponent";
 
 export default function HomePage() {
   return (

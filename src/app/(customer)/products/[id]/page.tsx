@@ -1,10 +1,10 @@
 "use client";
 
-import AddToCart from "@/src/components/AddToCart";
+import AddToCart from "@/src/components/shared/AddToCart";
 import AdvertisementComponent from "@/src/components/AdvertisementComponent";
 import AlternativImage from "@/src/components/AlternativImage";
-import Container from "@/src/components/Container";
-import { H1, P, SPAN } from "@/src/components/ui/TextComponent";
+import Container from "@/src/components/layout/Container";
+import { H1, P, SPAN } from "@/src/components/ui/Text/TextComponent";
 import { Product } from "@prisma/client";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";

@@ -9,15 +9,20 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        primary:
+          "rounded-full text-white border border-transparent bg-[#147ce5] hover:bg-[#1267bd] px-6 md:px-10 lg:px-16 py-3 sm:w-auto lg:w-40",
+        secondary:
+          "rounded-full text-white border border-[#1267bd] bg-[#000000] hover:border-white/40 px-6 md:px-10 lg:px-10 py-3 sm:w-auto lg:w-40",
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
+        secondary2:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        addToCart:
+          "flex items-center justify-center text-center text-lg font-medium text-white focus:outline-none cursor-pointer uppercase hover:bg-[#1267bd] rounded-full border border-transparent bg-[#147ce5] px-6 py-3 ",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -5,8 +5,9 @@ import Image from "next/image";
 import { Minus, Plus } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Button from "@/src/components/ui/ButtonComponent";
-import { H2, SPAN } from "@/src/components/ui/TextComponent";
+
+import { H2, SPAN } from "@/src/components/ui/Text/TextComponent";
+import { Button } from "@/src/components/ui/button/button";
 
 export default function CartPage() {
   const cartStore = useCartStore();
@@ -55,7 +56,6 @@ export default function CartPage() {
       }
     }
   };
-
   return (
     <div className="min-h-screen flex flex-col lg:flex-row mt-16 bg-[#0a0e13] text-gray-300">
       <div className="flex-1 p-4 flex flex-col justify-center overflow-auto lg:px-20 xl:px-40">
@@ -73,7 +73,7 @@ export default function CartPage() {
                   height={300}
                   className="w-full sm:w-32 lg:w-48 h-auto rounded-lg"
                 />
-                <span className="mt-2 sm:mt-0">{item.name}</span>
+                <span className="mt-2 sm:mt-0 text-center">{item.name}</span>
               </div>
               <div className="flex items-center mt-2 sm:mt-0 gap-2">
                 <button
@@ -98,7 +98,7 @@ export default function CartPage() {
           <H2 variant="shopping-cart">Your cart is empty</H2>
         )}
       </div>
-      <div className="flex-1 p-4 bg-[#010409] flex flex-col gap-4 justify-center lg:px-20 xl:px-40">
+      <div className="flex-2 p-4 bg-[#010409] flex flex-col gap-4 justify-center lg:px-20 xl:px-40">
         <div className="flex flex-col gap-2">
           <div className="flex justify-between">
             <SPAN>Subtotal items</SPAN>
@@ -118,7 +118,11 @@ export default function CartPage() {
             <SPAN variant="secondary">{totalPrice} SEK</SPAN>
           </div>
         </div>
-        <Button variant="primary" onClick={handleCheckout}>
+        <Button
+          variant="primary"
+          onClick={handleCheckout}
+          className="w-full p-4 xl:p-6 uppercase text-lg xl:text-xl font-bold"
+        >
           Checkout
         </Button>
       </div>

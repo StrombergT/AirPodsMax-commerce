@@ -1,4 +1,4 @@
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/src/components/ui/button/button";
 import { PageHeader } from "../_components/PageHeader";
 import Link from "next/link";
 import {

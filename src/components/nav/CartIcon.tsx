@@ -1,6 +1,6 @@
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
-import { useCartStore } from "../lib/store";
+import { useCartStore } from "../../lib/store";
 
 export default function CartIcon() {
   const cartStore = useCartStore();

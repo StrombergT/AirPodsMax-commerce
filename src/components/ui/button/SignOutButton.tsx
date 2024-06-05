@@ -1,5 +1,5 @@
 import { signOut } from "next-auth/react";
-import { Button } from "./ui/button";
+import { Button } from "./button";
 
 const SignOutButton = () => {
   return (

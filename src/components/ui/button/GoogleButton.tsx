@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "./button";
 import { signIn } from "next-auth/react";
 
 /**

@@ -1,7 +1,7 @@
 "use client";
 
 import { Input } from "@/src/components/ui/input";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/src/components/ui/button/button";
 import { useRef, useState } from "react";
 import { Textarea } from "@/src/components/ui/textarea";
 import { useFormStatus } from "react-dom";
@@ -19,6 +19,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/src/components/ui/form";
+
 const ProductFormSchema = z.object({
   name: z.string().min(1, { message: "String must not be empty" }),
   description: z.string().min(1, { message: "Description must not be empty" }),

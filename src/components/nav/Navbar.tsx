@@ -1,9 +1,9 @@
 "use client";
-import { Headphones, LogIn } from "lucide-react";
+import { Headphones, LogIn, User } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import CartIcon from "./CartIcon";
-import SignOutButton from "./SignOutButton";
+import SignOutButton from "../ui/button/SignOutButton";
 import Menu from "./Menu";
 
 export default function Navbar() {
@@ -41,16 +41,16 @@ export default function Navbar() {
             <Menu />
           </div>
           <div className="hidden sm:flex items-center gap-4 relative">
+            <Link href="/orders">Orders</Link>
             <CartIcon />
             {session?.user ? (
               <div className="flex items-center gap-4">
-                <Link href="/orders">Orders</Link>
                 <SignOutButton />
               </div>
             ) : (
               <div>
                 <Link href="/sign-in">
-                  <LogIn />
+                  <User />
                 </Link>
               </div>
             )}

@@ -3,9 +3,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { slideInFromLeft, slideInFromRight } from "../utils/motion";
-import Container from "./Container";
-import Button from "./ui/ButtonComponent";
+import { slideInFromLeft, slideInFromRight } from "../../utils/motion";
+import Container from "../layout/Container";
+import { Button } from "../ui/button/button";
 
 export default function Hero() {
   return (
@@ -26,7 +26,7 @@ export default function Hero() {
                 {" "}
                 the best{" "}
               </span>
-              HeadPhones
+              Headphones
             </span>
           </motion.div>
 
@@ -39,12 +39,13 @@ export default function Hero() {
             out our latest deals and reviews.
           </motion.p>
           <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 items-center justify-center lg:justify-start">
-            <Button variant="primary" variants={slideInFromLeft(0.5)}>
-              buy
-            </Button>
-            <Button variant="secondary" variants={slideInFromLeft(0.5)}>
-              read more
-            </Button>
+            <motion.div
+              variants={slideInFromLeft(0.5)}
+              className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+            >
+              <Button variant="primary">BUY</Button>
+              <Button variant="secondary">READ MORE</Button>
+            </motion.div>
           </div>
         </div>
         <motion.div

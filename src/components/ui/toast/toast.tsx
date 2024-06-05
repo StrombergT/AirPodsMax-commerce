@@ -40,6 +40,14 @@ const toastVariants = cva(
   }
 );
 
+const hehe = "asdf";
+
+/**
+ * Toast
+ *
+ * Toast expects to be wrapped inside a Toaster Component.
+ * Toast uses a context from Toaster
+ */
 const Toast = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> &

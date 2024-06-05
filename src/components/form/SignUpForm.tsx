@@ -11,11 +11,11 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import GoogleButton from "../GoogleButton";
+import { Button } from "../ui/button/button";
+import GoogleButton from "../ui/button/GoogleButton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useToast } from "../ui/use-toast";
+import { useToast } from "../ui/toast/use-toast";
 
 const FormSchema = z
   .object({

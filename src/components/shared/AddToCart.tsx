@@ -1,8 +1,8 @@
 "use client";
 import { toast } from "react-toastify";
-import { useCartStore } from "../lib/store";
+import { useCartStore } from "../../lib/store";
 import { Product } from "@prisma/client";
-import Button from "./ui/ButtonComponent";
+import { Button } from "../ui/button/button";
 
 export default function AddToCart({ product }: { product: Product }) {
   const { addProduct } = useCartStore();
@@ -18,8 +18,12 @@ export default function AddToCart({ product }: { product: Product }) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between items-center">
-        <div className="flex justify-between w-full p-3 xl:w-96">
-          <Button variant="primary" onClick={handleCart}>
+        <div className="flex justify-between w-full p-3 xl:w-full">
+          <Button
+            variant="addToCart"
+            onClick={handleCart}
+            className="py-6 w-full items-center justify-center flex"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="mr-2 h-8 w-8"

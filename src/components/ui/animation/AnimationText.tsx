@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { slideInFromTop } from "../utils/motion";
+import { slideInFromTop } from "../../../utils/motion";
 
 export default function AnimationText() {
   const [refTop, inViewTop] = useInView({ triggerOnce: true });

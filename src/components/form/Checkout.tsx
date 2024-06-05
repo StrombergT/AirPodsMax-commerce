@@ -8,7 +8,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import AddressForm from "./AddressForm";
-import Container from "../Container";
+import Container from "../layout/Container";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
