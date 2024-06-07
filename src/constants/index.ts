@@ -118,3 +118,11 @@ export const extraProducts = [
     ],
   },
 ];
+
+export const footerLinks = [
+  "FAQ",
+  "Shipping Information",
+  "Returns & Refunds",
+  "Privacy Policy",
+  "Contact Us",
+];

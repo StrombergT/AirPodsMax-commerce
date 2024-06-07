@@ -107,11 +107,11 @@ export default function OrderPage() {
 
                       <span className="font-semibold pr-1">Quantity:</span>
                       <span className="flex-1">{item.quantity}</span>
-                      <div className="w-[60px]">
+                      <div className="w-[100px]">
                         <Image
                           src={item.image || ""}
-                          width={80}
-                          height={80}
+                          width={100}
+                          height={100}
                           alt={item.name}
                           priority={true}
                           className="w-full object-fill"
@@ -122,7 +122,6 @@ export default function OrderPage() {
                 </div>
                 <p className="flex justify-between mt-5 pt-5 border-t border-[#27303f]">
                   <span className="font-semibold">Total:</span>
-
                   <span> {order.amount} SEK</span>
                 </p>
               </div>

@@ -79,7 +79,7 @@ export default function SingleProductPage({
               originalImage={singleProduct.image || ""}
             />
           </div>
-          <div className="w-full lg:w-1/3">
+          <div className="w-full container">
             <div className="mb-8">
               <H1>{singleProduct.name}</H1>
               <SPAN variant="secondary">{singleProduct.unit_amount} SEK</SPAN>

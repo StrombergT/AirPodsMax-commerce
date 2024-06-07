@@ -1,5 +1,6 @@
 import { signOut } from "next-auth/react";
 import { Button } from "./button";
+import { LogOut } from "lucide-react";
 
 const SignOutButton = () => {
   return (
@@ -11,9 +12,10 @@ const SignOutButton = () => {
             callbackUrl: process.env.NEXT_PUBLIC_API_BASE_URL + "/",
           })
         }
-        variant={"destructive"}
+        size="icon"
+        variant="ghost"
       >
-        Sign Out
+        <LogOut />
       </Button>
     </div>
   );

@@ -18,8 +18,7 @@ const buttonVariants = cva(
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary2:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+
         ghost: "hover:bg-accent hover:text-accent-foreground",
         addToCart:
           "flex items-center justify-center text-center text-lg font-medium text-white focus:outline-none cursor-pointer uppercase hover:bg-[#1267bd] rounded-full border border-transparent bg-[#147ce5] px-6 py-3 ",
