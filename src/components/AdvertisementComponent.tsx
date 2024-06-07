@@ -2,7 +2,7 @@ import { extraProducts } from "../constants";
 
 export default function AdvertisementComponent() {
   return (
-    <div className="mt-10 p-4 md:p-8 bg-[#010409] rounded-lg text-center mb-40">
+    <div className="mt-10 p-4 md:p-8 bg-[#000000]  rounded-lg text-center mb-40">
       <h2 className="text-xl md:text-2xl font-bold text-gray-300 mb-8">
         Which AirPods are right for you?
       </h2>
